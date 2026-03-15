@@ -184,6 +184,12 @@ var currentTrack = '';
 var progressInterval = null;
 var audio = document.getElementById('audio-player');
 
+// Offset aus URL-Parameter lesen (Box-Modus)
+var params = new URLSearchParams(window.location.search);
+var offsetMs = parseInt(params.get('offset') || '0', 10);
+var boxMode = params.get('boxmode') === '1';
+var offsetSeconds = offsetMs / 1000;
+
 document.getElementById('join-btn').addEventListener('click', joinParty);
 document.getElementById('name-input').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') joinParty();
@@ -199,7 +205,9 @@ function joinParty() {
   var ps = document.getElementById('player-screen');
   ps.style.display = 'flex';
   ps.style.flexDirection = 'column';
-  document.getElementById('my-name-badge').textContent = myName;
+  document.getElementById('my-name-badge').textContent = boxMode
+    ? '🔊 Box-Modus' + (offsetMs !== 0 ? ' ' + (offsetMs > 0 ? '+' : '') + offsetMs + 'ms' : '')
+    : myName;
 
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   analyser = audioCtx.createAnalyser();
@@ -282,7 +290,8 @@ function loadAndSync(state) {
 function syncPosition(state) {
   if (!state.trackName) return;
   var delay = (Date.now() - state.timestamp) / 1000;
-  var targetPos = state.position + delay;
+  // Offset addieren: positive Werte = Wiedergabe verzögern (Box braucht länger)
+  var targetPos = state.position + delay + offsetSeconds;
 
   if (Math.abs(audio.currentTime - targetPos) > 0.5) {
     audio.currentTime = Math.max(0, targetPos);
