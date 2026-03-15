@@ -1,0 +1,9 @@
+C:/Users/Administrator/projects/SyncParty/android/app/.cxx/Debug/2l446a2s/x86/CMakeFiles/appmodules.dir
+C:/Users/Administrator/projects/SyncParty/android/app/.cxx/Debug/2l446a2s/x86/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/projects/SyncParty/android/app/.cxx/Debug/2l446a2s/x86/CMakeFiles/rebuild_cache.dir
+C:/Users/Administrator/projects/SyncParty/android/app/.cxx/Debug/2l446a2s/x86/RNCNetInfoSpec_autolinked_build/CMakeFiles/react_codegen_RNCNetInfoSpec.dir
+C:/Users/Administrator/projects/SyncParty/android/app/.cxx/Debug/2l446a2s/x86/RNCNetInfoSpec_autolinked_build/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/projects/SyncParty/android/app/.cxx/Debug/2l446a2s/x86/RNCNetInfoSpec_autolinked_build/CMakeFiles/rebuild_cache.dir
+C:/Users/Administrator/projects/SyncParty/android/app/.cxx/Debug/2l446a2s/x86/RNCWebViewSpec_autolinked_build/CMakeFiles/react_codegen_RNCWebViewSpec.dir
+C:/Users/Administrator/projects/SyncParty/android/app/.cxx/Debug/2l446a2s/x86/RNCWebViewSpec_autolinked_build/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/projects/SyncParty/android/app/.cxx/Debug/2l446a2s/x86/RNCWebViewSpec_autolinked_build/CMakeFiles/rebuild_cache.dir

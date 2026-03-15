@@ -1,0 +1,3 @@
+C:\Users\Administrator\projects\SyncParty\node_modules\@react-native-community\netinfo\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\Administrator\projects\SyncParty\node_modules\react-native-webview\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\Administrator\projects\SyncParty\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup\CMakeLists.txt
