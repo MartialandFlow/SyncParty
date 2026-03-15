@@ -2,9 +2,9 @@
 
 # 🎧 SyncParty
 
-> Luister samen met maximaal 30 mensen naar muziek – offline, zonder streamingdiensten, zonder account.
+> Luister samen met maximaal 30 mensen naar muziek – offline, zonder streamingdiensten, zonder account. Nu ook met luidsprekersupport.
 
-SyncParty maakt van een Android-telefoon een DJ-controller. Gasten hoeven **geen app te installeren** – scan gewoon de QR-code, voer een naam in en stop de oortjes in.
+SyncParty maakt van een Android-telefoon een DJ-controller. Gasten hoeven **geen app te installeren** – scan de QR-code, voer een naam in en stop de oortjes in of verbind een luidspreker.
 
 ---
 
@@ -17,6 +17,8 @@ SyncParty maakt van een Android-telefoon een DJ-controller. Gasten hoeven **geen
 - 👥 **Tot 30 personen** tegelijk (met een draagbare router)
 - 🌈 **Meeslepend design** – Realtime visualizer, emoji-reacties, feestsfeer
 - 🔄 **Auto-sync** – Wie later aansluit, springt automatisch naar de juiste positie
+- 🔊 **Box-modus** – Telefoon aansluiten op een luidspreker voor verdeeld geluidssysteem
+- 🚫 **Geen goedkope Bluetooth** – SBC wordt automatisch geblokkeerd, alleen aptX / AAC / LDAC
 
 ---
 
@@ -38,13 +40,35 @@ DJ-scherm                          Browser van gast
 
 ---
 
+## 🔊 Box-modus
+
+Elke gasttelefooon kan direct worden aangesloten op een luidspreker – zo ontstaat een verdeeld, synchroon geluidssysteem zonder dure hardware.
+
+```
+[DJ-telefoon]  ──── WiFi ────►  [Gast 1] ──AUX/BT──► 🔊 Box 1
+                                [Gast 2] ──AUX/BT──► 🔊 Box 2
+                                [Gast 3] ──AUX/BT──► 🔊 Box 3
+```
+
+**Bluetooth-kwaliteitscheck:**
+Bij het inschakelen van de box-modus meet de app automatisch de audio-uitvoerlatentie.
+
+| Latentie | Resultaat | Voorbeeld |
+|---|---|---|
+| < 150ms | ✅ Toegestaan | aptX, AAC, LDAC, AUX-kabel |
+| > 150ms | ❌ Geblokkeerd | SBC (standaard Bluetooth) |
+
+**Offset-schuifregelaar:** Als boxen toch iets uit de maat klinken, kan de weergave worden bijgesteld van −300ms tot +300ms.
+
+---
+
 ## 🛠️ Wat je nodig hebt
 
 | Wat | Waarom |
 |---|---|
 | Android-telefoon (DJ) | Draait de app & server |
 | Draagbare wifi-router | Aanbevolen voor 10+ gasten (bijv. GL.iNet, ~€25) |
-| Oortjes voor iedereen | Iedereen luistert op zijn eigen apparaat |
+| Oortjes of luidspreker | Iedereen luistert op zijn eigen apparaat |
 
 - Android 7.0+ (DJ-apparaat)
 - Elke telefoon met een browser (gasten)
@@ -63,33 +87,23 @@ Ga naar [Releases](../../releases) en download de nieuwste `SyncParty.apk`.
 2. Op de telefoon: **Instellingen → Beveiliging → Onbekende bronnen** → toestaan
 3. Tik op het APK-bestand → Installeren
 
-> **Tip:** Als gevraagd wordt of je wilt installeren vanuit onbekende bronnen, sta dit gewoon toe – de app staat niet in de Play Store.
-
 ### Stap 3 – MP3's klaarzetten
-
-Zet je bestanden op de **DJ-telefoon** in deze map:
 
 ```
 Interne opslag / SyncParty /
     01 - Song1.mp3
     02 - Song2.mp3
-    03 - Song3.mp3
 ```
 
 De app maakt de map automatisch aan bij de eerste start.
 
 ### Stap 4 – Feest starten
 
-**DJ-telefoon:**
-1. Open SyncParty
-2. Tik op "DJ worden"
-3. Toon de QR-code (knop `📱 QR`)
+**DJ-telefoon:** App openen → "DJ worden" → QR-code tonen
 
-**Gasten:**
-1. Verbind met het wifi van de router (of de hotspot van de DJ)
-2. Scan de QR-code met de camera
-3. Naam invoeren → Deelnemen
-4. Oortjes in 🎧
+**Gasten (oortjes):** QR scannen → Naam invoeren → Deelnemen 🎧
+
+**Gasten (box):** App openen → "Meeluisteren" → Box-modus inschakelen → Verbinden 🔊
 
 ---
 
@@ -104,32 +118,19 @@ De app maakt de map automatisch aan bij de eerste start.
            [Gast 1]       [Gast 2]  ...  [Gast 30]
 ```
 
-**Aanbevolen routers:** GL.iNet GL-MT300N-V2, TP-Link TL-WR902AC of vergelijkbare reisrouters (~€20–40).
-
-De **hotspot van de DJ-telefoon** werkt ook – maar ondersteunt doorgaans slechts 10–15 gelijktijdige verbindingen.
+**Aanbevolen routers:** GL.iNet GL-MT300N-V2, TP-Link TL-WR902AC (~€20–40).
 
 ---
 
-## 🔧 Zelf bouwen (voor ontwikkelaars)
-
-### Vereisten
-
-- Node.js 18+
-- Android Studio (voor SDK & JDK)
-- Android SDK API 34+
-
-### Setup
+## 🔧 Zelf bouwen (ontwikkelaars)
 
 ```bash
-git clone https://github.com/jouw-naam/SyncParty.git
+git clone https://github.com/MartialandFlow/SyncParty.git
 cd SyncParty
 npm install
-cd android
-./gradlew assembleDebug
+cd android && ./gradlew assembleDebug
 # APK: android/app/build/outputs/apk/debug/app-debug.apk
 ```
-
-### Installeren via USB
 
 ```bash
 adb install android/app/build/outputs/apk/debug/app-debug.apk
@@ -139,10 +140,10 @@ adb install android/app/build/outputs/apk/debug/app-debug.apk
 
 ## 🎯 Gebruikssituaties
 
-- 🏕️ Camping & festivals – iedereen luistert op zijn eigen apparaat
-- 🏖️ Strandfeesten – geen luidspreker nodig
+- 🏕️ Camping & festivals – oortjes of verspreide boxen
+- 🏖️ Strandfeesten – meerdere boxen, één sync
 - 🚌 Busreizen – stille disco voor de hele groep
-- 🏠 Huisfeesten – meeslepende koptelefoonervaring
+- 🏠 Huisfeesten – boxen in verschillende kamers
 - 🌙 Silent disco – zonder dure zenderhardware
 
 ---
@@ -150,19 +151,16 @@ adb install android/app/build/outputs/apk/debug/app-debug.apk
 ## ❓ Veelgestelde vragen
 
 **Moeten gasten een app installeren?**
-Nee. Gasten nemen deel via de browser – geen download nodig.
+Voor oortjes-modus niet – gewoon QR scannen en browser openen. Voor box-modus is de app nodig.
 
-**Werkt het zonder internet?**
-Ja, volledig offline. Alleen een gedeeld wifi (hotspot of router) is nodig.
+**Welke Bluetooth werkt met box-modus?**
+aptX, aptX HD, AAC en LDAC. SBC wordt automatisch geblokkeerd vanwege de hoge latentie.
 
 **Hoe nauwkeurig is de synchronisatie?**
 Ongeveer 20–50ms op hetzelfde wifi – niet hoorbaar in muziek.
 
-**Welke audioformaten worden ondersteund?**
-Momenteel MP3. Meer formaten (AAC, FLAC) komen binnenkort.
-
 **Hoeveel mensen kunnen meedoen?**
-~10–15 met een telefoon-hotspot, 30+ met een draagbare router.
+~10–15 met een hotspot, 30+ met een draagbare router.
 
 ---
 
